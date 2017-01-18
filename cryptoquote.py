@@ -6,7 +6,7 @@ import cgi
 import random
 import string
 
-PORT_NUMBER = 8080
+PORT_NUMBER = 8081
 
 def good_input(input):
     #Tests if valid input (No Numbers/special characters except ones strictly defined)
