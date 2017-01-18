@@ -49,12 +49,9 @@ class myHandler(BaseHTTPRequestHandler):
                      })
         original = form['cryptoquote'].value
         self.send_response(200)
-        self.send_header("Content-type", "text/html")
         self.end_headers()
         converted = converter(original)
-        f1 = open(curdir + sep + "cryptoquote-header.html")
-        output = "<center><h1>Completed cryptoquote for \"" + original + "\"</h1><br><h2>" + converted + "</h2><center>"
-        self.wfile.write(f1.read().encode() + output.encode())
+        self.wfile.write(converted.encode())
         return
 			
 

@@ -1,13 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #F5F5DC;
+        }
+        
+        h1 {
+            margin: 0;
+        }
+        
+        h2 {
+            margin: 0;
+        }
+    </style>
+</head>
+
 <body>
     <center>
         <h1>Poly Cryptoquote</h1>
         <br>
-        <form action="action_page.php" method="post">
+        <form>
             Cryptoquote:<br>
-            <input type="text" name="cryptoquote"><br><br>
-            <input type="submit" value="Submit">
+            <input id="cryptoquote" type="text" name="cryptoquote"><br><br>
+            <input type="submit" value="Submit" onClick="post()">
         </form>
         <center>
+
+            <script>
+                function post() {
+                    var original = document.getElementById("cryptoquote").value;
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('POST', '', false);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            document.body.innerHTML = "<center><h1>Completed cryptoquote for \"" + original + "\"</h1><br><h2>" + xhr.responseText + "</h2><center>";
+                        }
+                        else if (xhr.status !== 200) {
+                            alert('Request failed.  Returned status of ' + xhr.status);
+                        }
+                    };
+                    xhr.send(encodeURI('cryptoquote=' + original))
+                }
+            </script>
 
 </body>
 
