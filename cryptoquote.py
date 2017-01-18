@@ -32,11 +32,9 @@ class myHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
-        f1 = open(curdir + sep + "cryptoquote-header.html")
-        f2 = open(curdir + sep + "cryptoquote.html")
-        self.wfile.write(f1.read().encode() + f2.read().encode())
-        f1.close()
-        f2.close()
+        f = open(curdir + sep + "cryptoquote.html")
+        self.wfile.write(f.read().encode())
+        f.close()
         return
     
     #Handler for the POST requests
